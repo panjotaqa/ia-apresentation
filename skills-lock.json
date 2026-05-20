@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "shadcn": {
+      "source": "shadcn/ui",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "f0fdd03f4755cbb3b57e20fe6fd4a97c00d34e6780187b6559316986e8d848db"
+    },
+    "slide-cn": {
+      "source": "prithvi-rajan-222/slide-cn",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/slide-cn/SKILL.md",
+      "computedHash": "cdc573c7dc9ebbb57c06e218ae9650beb47757355955584a22aa3a0bce1242f8"
+    },
+    "slidev": {
+      "source": "slidevjs/slidev",
+      "sourceType": "github",
+      "skillPath": "skills/slidev/SKILL.md",
+      "computedHash": "400f1c88033325513a4d97d1eb5f0e4ff444e6f73c1635f91e6f1f31cf56ba0a"
+    }
+  }
+}
