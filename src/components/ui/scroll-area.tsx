@@ -3,25 +3,35 @@ import { ScrollArea as ScrollAreaPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
 
+type ScrollAreaProps = React.ComponentProps<typeof ScrollAreaPrimitive.Root> & {
+  /** vertical: só lista; horizontal: só largura; both: código e conteúdo largo */
+  orientation?: "vertical" | "horizontal" | "both"
+}
+
 function ScrollArea({
   className,
   children,
+  orientation = "vertical",
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}: ScrollAreaProps) {
+  const showVertical = orientation === "vertical" || orientation === "both"
+  const showHorizontal = orientation === "horizontal" || orientation === "both"
+
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-      className={cn("relative", className)}
+      className={cn("relative overflow-hidden", className)}
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        className="size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1"
+        className="size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1 [&>div]:!block"
       >
         {children}
       </ScrollAreaPrimitive.Viewport>
-      <ScrollBar />
-      <ScrollAreaPrimitive.Corner />
+      {showVertical ? <ScrollBar orientation="vertical" /> : null}
+      {showHorizontal ? <ScrollBar orientation="horizontal" /> : null}
+      {showVertical && showHorizontal ? <ScrollAreaPrimitive.Corner /> : null}
     </ScrollAreaPrimitive.Root>
   )
 }

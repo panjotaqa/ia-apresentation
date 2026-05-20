@@ -183,7 +183,6 @@ export function GitlabDevDemo() {
     >
       <HorizontalSplit.Left className="flex min-h-0 h-full w-full self-stretch">
         <RepoCodePanel
-          className="h-full"
           visibleFileIds={visibleFileIds}
           openAccordion={openAccordion}
           onOpenAccordionChange={setOpenAccordion}

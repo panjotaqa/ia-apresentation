@@ -26,6 +26,8 @@ export type SlideAiChatProps = {
   emptyMessage?: string
   thinkingMs?: number
   defaultThinkingLabel?: string
+  onStepChange?: (step: number) => void
+  className?: string
 }
 
 const DEFAULT_THINKING_MS = 1200
@@ -45,6 +47,8 @@ export function SlideAiChat({
   emptyMessage = "Por onde começamos?",
   thinkingMs = DEFAULT_THINKING_MS,
   defaultThinkingLabel = DEFAULT_THINKING_LABEL,
+  onStepChange,
+  className,
 }: SlideAiChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [step, setStep] = useState(0)
@@ -83,6 +87,10 @@ export function SlideAiChat({
     viewport?.scrollTo({ top: 0, behavior: "smooth" })
   }, [input])
 
+  useEffect(() => {
+    onStepChange?.(step)
+  }, [step, onStepChange])
+
   const handleSend = () => {
     if (!canSend) return
 
@@ -117,7 +125,10 @@ export function SlideAiChat({
 
   return (
     <div
-      className="flex h-full w-full max-h-[85vh] min-h-0 flex-col overflow-hidden rounded-xl border border-border/60 bg-card shadow-xs"
+      className={cn(
+        "flex h-[82vh] min-h-[82vh] max-h-[82vh] w-full flex-col overflow-hidden rounded-xl border border-border/60 bg-card shadow-xs",
+        className
+      )}
       onClick={(e) => e.stopPropagation()}
       onKeyDown={(e) => e.stopPropagation()}
     >
@@ -186,7 +197,7 @@ export function SlideAiChat({
       </div>
 
       <footer className="mt-auto shrink-0 border-t border-border/60 p-3">
-        <div className="flex flex-col gap-2 rounded-2xl border border-border/60 bg-muted/40 p-3">
+        <div className="flex flex-col gap-2 p-3">
           <div
             role="textbox"
             aria-readonly
@@ -194,12 +205,12 @@ export function SlideAiChat({
             tabIndex={isPromptDisabled ? -1 : 0}
             onKeyDown={handleKeyDown}
             className={cn(
-              "flex min-h-12 max-h-32 w-full overflow-hidden rounded-lg border border-border/60 bg-transparent shadow-none outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+              "flex h-[5.2rem] min-h-[5.2rem] max-h-[5.2rem] w-full overflow-hidden rounded-lg shadow-none outline-none",
               isPromptDisabled && "opacity-60"
             )}
           >
             <ScrollArea
-              className="h-32 max-h-32 min-h-12 w-full"
+              className="h-[5.2rem] min-h-[5.2rem] max-h-[5.2rem] w-full"
               onWheel={(e) => e.stopPropagation()}
             >
               <div

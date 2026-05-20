@@ -6,36 +6,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { DatabaseMcpAiChat } from "@/components/ui/slide-cn/database-mcp-ai-chat"
+import { EvolutionRegressionAiChat } from "@/components/ui/slide-cn/evolution-regression-ai-chat"
 import { HeaderWithContent } from "@/components/ui/slide-cn/header-with-content"
 import { HorizontalSplit } from "@/components/ui/slide-cn/horizontal-split"
 
 const topicDescription =
-  "Via MCP, a IA consulta o banco em ambiente seguro e responde sobre tabelas, colunas e relacionamentos em linguagem natural."
+  "Antes de cada release, a IA cruza o change set com o repositório e a suíte existente: quais camadas quebram, quais testes rodar no mínimo e o que não pode ser pulado."
 
-const useCases = [
-  "Explicar tabelas, colunas, FKs e views a partir do schema",
-  "Sugerir queries de exploração (sempre read-only em ambientes seguros)",
-  "Identificar regras implícitas: status, flags, campos calculados",
-  "Relacionar dados com fluxos de negócio descritos nos requisitos",
+const capabilities = [
+  "Absorver mudança de negócio e contexto do código",
+  "Mapear impacto por camada (service, API, testes)",
+  "Definir suíte mínima de regressão (CT-XX + HTTP)",
+  "Consolidar riscos e critérios de sign-off",
 ]
 
-const cautions = [
-  "Nunca em produção sem governança e credenciais controladas",
-  "Mascarar ou omitir dados sensíveis (PII, financeiros)",
-  "Confirmar tipos, nullability e índices no banco real",
-  "Documentar o que foi descoberto para o time",
-]
-
-export function DesignImplementationDatabaseSlide() {
+export function EvolutionRegressionImpactSlide() {
   return (
     <HeaderWithContent className="h-full min-h-0 gap-4 md:gap-6">
       <HeaderWithContent.Header className="shrink-0 text-2xl md:text-4xl lg:text-5xl">
-        <span className="text-sky-600 dark:text-sky-400">02.2</span>
+        <span className="text-orange-600 dark:text-orange-400">04.2</span>
         <span className="text-muted-foreground"> · </span>
-        Banco de dados via MCP
+        Impacto em regressão
       </HeaderWithContent.Header>
-      <HeaderWithContent.Content className="flex min-h-0 flex-1 flex-col gap-6 overflow-hidden">
+      <HeaderWithContent.Content className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <HorizontalSplit ratio={0.38} className="min-h-0 flex-1 items-stretch">
           <HorizontalSplit.Left className="flex min-h-0 flex-col gap-4 overflow-y-auto pr-0 md:pr-6">
             <div>
@@ -46,25 +39,14 @@ export function DesignImplementationDatabaseSlide() {
             </div>
             <div>
               <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                O que isso permite
+                O que o chat faz
               </h3>
               <ul className="flex flex-col gap-2 text-base">
-                {useCases.map((item) => (
+                {capabilities.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="text-sky-600 dark:text-sky-400">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                Cuidados obrigatórios
-              </h3>
-              <ul className="flex flex-col gap-2 text-base">
-                {cautions.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="text-sky-600 dark:text-sky-400">•</span>
+                    <span className="text-orange-600 dark:text-orange-400">
+                      •
+                    </span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -76,15 +58,15 @@ export function DesignImplementationDatabaseSlide() {
                   Papel do QA
                 </CardTitle>
                 <CardDescription className="text-base leading-relaxed text-muted-foreground">
-                  Entender o schema antes de testar: onde ficam notas, quem
-                  lança e como provas se ligam aos alunos. A IA ajuda; a
-                  validação é sua.
+                  A IA acelera o mapa de impacto — priorização, ambiente e
+                  sign-off continuam humanos. Use o chat como copiloto antes de
+                  cada release em produção.
                 </CardDescription>
               </CardHeader>
             </Card>
           </HorizontalSplit.Left>
           <HorizontalSplit.Right className="flex h-full max-h-full min-h-0 w-full flex-col">
-            <DatabaseMcpAiChat />
+            <EvolutionRegressionAiChat />
           </HorizontalSplit.Right>
         </HorizontalSplit>
       </HeaderWithContent.Content>

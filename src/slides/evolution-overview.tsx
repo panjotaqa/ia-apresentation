@@ -8,17 +8,17 @@ import {
 } from "@/components/ui/card"
 import { HeaderWithContent } from "@/components/ui/slide-cn/header-with-content"
 import { HorizontalSplit } from "@/components/ui/slide-cn/horizontal-split"
-import { Code, Database, GitBranch, GitPullRequest } from "lucide-react"
+import { GitCompareArrows, Wrench } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 const phaseDescription =
-  "É a fase do desenvolvimento. O software é projetado estruturalmente e, em seguida, codificado."
+  "É a fase da manutenção. Como o mundo muda, o software precisa mudar junto para continuar sendo útil."
 
 const phaseActivities = [
-  "Definição de arquitetura e padrões do sistema",
-  "Design de banco de dados e integrações",
-  "Escolha de stack e frameworks",
-  "Escrita e revisão do código-fonte",
+  "Correção de erros pós-lançamento (hotfixes)",
+  "Adaptação a novos ambientes e dependências",
+  "Inclusão de novas funcionalidades demandadas pelo mercado",
+  "Refatoração e redução de débito técnico",
 ]
 
 const topics: {
@@ -29,60 +29,44 @@ const topics: {
   accent: string
 }[] = [
   {
-    icon: GitBranch,
+    icon: Wrench,
     label: "01",
-    title: "Consultar GitLab",
+    title: "Code smells e refatoração",
     description:
-      "Projetos, serviços, pipelines e histórico de mudanças com apoio de IA.",
-    accent: "text-violet-600 dark:text-violet-400",
+      "Identificar números mágicos, métodos longos e duplicação; refatorar com IA mantendo o comportamento (US-015).",
+    accent: "text-orange-600 dark:text-orange-400",
   },
   {
-    icon: Database,
+    icon: GitCompareArrows,
     label: "02",
-    title: "Entender o banco",
+    title: "Impacto em regressão",
     description:
-      "Explorar schema, relacionamentos e regras implícitas nos dados.",
-    accent: "text-sky-600 dark:text-sky-400",
-  },
-  {
-    icon: Code,
-    label: "03",
-    title: "Desenvolver com IA",
-    description:
-      "Codificação orientada a skills e regras bem definidas — com ownership humano.",
-    accent: "text-emerald-600 dark:text-emerald-400",
-  },
-  {
-    icon: GitPullRequest,
-    label: "04",
-    title: "Revisão de código",
-    description:
-      "Análise de MR com IA: qualidade, critérios de aceite e sugestões antes do merge.",
-    accent: "text-amber-600 dark:text-amber-400",
+      "Dado um change set, mapear camadas afetadas e sugerir suíte mínima de testes antes do release.",
+    accent: "text-orange-600 dark:text-orange-400",
   },
 ]
 
-export function DesignImplementationSlide() {
+export function EvolutionOverviewSlide() {
   return (
-    <HeaderWithContent className="gap-4 md:gap-5">
+    <HeaderWithContent className="h-full min-h-0 gap-4 md:gap-5">
       <HeaderWithContent.Header className="text-2xl md:text-4xl lg:text-5xl">
-        Projeto e Implementação de Software
+        Evolução de Software
       </HeaderWithContent.Header>
       <HeaderWithContent.Content className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <HorizontalSplit
           ratio={0.4}
           className="min-h-0 flex-1 items-stretch"
         >
-          <HorizontalSplit.Left className="flex flex-col gap-4 overflow-y-auto pr-0 md:pr-6">
-            <div>
+          <HorizontalSplit.Left className="flex min-h-0 flex-col gap-4 overflow-y-auto pr-0 md:pr-6">
+            <section>
               <h2 className="mb-1 text-sm font-semibold text-foreground md:text-base">
                 A fase
               </h2>
               <p className="text-xs leading-relaxed md:text-sm">
                 {phaseDescription}
               </p>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground md:text-sm">
                 O que envolve
               </h3>
@@ -94,22 +78,16 @@ export function DesignImplementationSlide() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="flex flex-col gap-2">
+            </section>
+            <section className="flex flex-col gap-2">
               <p className="text-xs leading-relaxed text-foreground md:text-sm">
-                É a etapa que mais abre possibilidades com IA — e também a mais
-                perigosa se usada sem critério: podemos perder o fio do que
-                estamos fazendo.
+                A evolução não é fim de projeto — é onde o QA mantém confiança
+                release após release, com IA acelerando análise e refatoração.
               </p>
-              <p className="text-xs leading-relaxed md:text-sm">
-                Precisa ser feita e entendida por nós. Delegar tudo à IA
-                enfraquece o raciocínio — a direção e a revisão continuam sendo
-                nossas.
-              </p>
-            </div>
+            </section>
           </HorizontalSplit.Left>
 
-          <HorizontalSplit.Right className="flex min-h-0 flex-col gap-2">
+          <HorizontalSplit.Right className="flex min-h-0 flex-col justify-start gap-3">
             {topics.map(({ icon: Icon, label, title, description, accent }) => (
               <Card
                 key={title}

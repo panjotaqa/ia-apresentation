@@ -6,31 +6,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { GitlabConsultAiChat } from "@/components/ui/slide-cn/gitlab-consult-ai-chat"
+import { CodeReviewDemo } from "@/components/ui/slide-cn/code-review-demo"
 import { HeaderWithContent } from "@/components/ui/slide-cn/header-with-content"
 import { HorizontalSplit } from "@/components/ui/slide-cn/horizontal-split"
 
 const topicDescription =
-  "A integração GitLab + LLM conecta o repositório à IA: o time pergunta em linguagem natural e recebe respostas com contexto real do código — sem precisar vasculhar o projeto arquivo por arquivo."
+  "Revisão de código assistida por IA no merge request: qualidade (Clean Code, SOLID, DRY), aderência aos critérios de aceite e sugestões antes do merge — com o código da US-015 visível no repositório."
 
 const capabilities = [
-  "Acessar código-fonte — pastas, classes, endpoints e queries",
-  "Entender o que foi feito — MRs, commits e mudanças recentes",
-  "Apoiar code review — padrões, riscos e aderência às convenções",
-  "Perguntar sobre tecnologia — stack, dependências e arquitetura",
-  "Antecipar testes — regras de negócio, contratos de API e cenários de borda",
+  "Analisar arquitetura e separação de camadas",
+  "Conferir critérios de aceite no código do MR",
+  "Listar melhorias e riscos antes do merge",
+  "Apoiar o time sem substituir o julgamento do revisor",
 ]
 
-export function DesignImplementationGitlabSlide() {
+export function DesignImplementationCodeReviewSlide() {
   return (
     <HeaderWithContent className="h-full min-h-0 gap-4 md:gap-6">
       <HeaderWithContent.Header className="shrink-0 text-2xl md:text-4xl lg:text-5xl">
-        <span className="text-violet-600 dark:text-violet-400">02.1</span>
+        <span className="text-amber-600 dark:text-amber-400">02.4</span>
         <span className="text-muted-foreground"> · </span>
-        Consultar GitLab com IA
+        Revisão de código com IA
       </HeaderWithContent.Header>
-      <HeaderWithContent.Content className="flex min-h-0 flex-1 flex-col gap-6 overflow-hidden">
-        <HorizontalSplit ratio={0.38} className="min-h-0 flex-1 items-stretch">
+      <HeaderWithContent.Content className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <HorizontalSplit ratio={0.27} className="min-h-0 flex-1 items-stretch">
           <HorizontalSplit.Left className="flex min-h-0 flex-col gap-4 overflow-y-auto pr-0 md:pr-6">
             <div>
               <h2 className="mb-2 text-lg font-semibold text-foreground">
@@ -40,12 +39,12 @@ export function DesignImplementationGitlabSlide() {
             </div>
             <div>
               <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                O que isso permite
+                O que o chat faz
               </h3>
               <ul className="flex flex-col gap-2 text-base">
                 {capabilities.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span className="text-violet-600 dark:text-violet-400">
+                    <span className="text-amber-600 dark:text-amber-400">
                       •
                     </span>
                     <span>{item}</span>
@@ -59,17 +58,15 @@ export function DesignImplementationGitlabSlide() {
                   Papel do QA
                 </CardTitle>
                 <CardDescription className="text-base leading-relaxed text-muted-foreground">
-                  Com GitLab + IA, o QA entende o que já foi desenvolvido, o que
-                  outros times entregaram no mesmo repositório e como o sistema
-                  funciona de ponta a ponta — antes de testar ou apoiar novas
-                  features. O chat ao lado ilustra isso no fluxo de cadastro de
-                  notas; o critério e a validação continuam humanos.
+                  A IA aponta padrões e lacunas — aprovar ou pedir mudanças no MR
+                  continua sendo decisão humana, com foco em risco e regras de
+                  negócio da feature.
                 </CardDescription>
               </CardHeader>
             </Card>
           </HorizontalSplit.Left>
           <HorizontalSplit.Right className="flex h-full max-h-full min-h-0 w-full flex-col">
-            <GitlabConsultAiChat />
+            <CodeReviewDemo />
           </HorizontalSplit.Right>
         </HorizontalSplit>
       </HeaderWithContent.Content>
